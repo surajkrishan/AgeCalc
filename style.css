@@ -1,0 +1,63 @@
+/* Reset margins and paddings */
+html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Add relavent padding and margin */
+.container {
+    margin: 4%;
+    padding: 2%;
+    border: 5px black solid;
+    margin-right: 40%;
+}
+
+/* Text styles */
+.text_1 {
+    font-size:30px;
+    text-align: justify;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text_2 {
+    font-size:20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.error {
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* input styles */
+input[type=number] {
+    padding: 12px 20px;
+    margin: 8px 0;
+  }
+
+  /* hide buttons in text box */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Buttom styles */
+.btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+ 
+

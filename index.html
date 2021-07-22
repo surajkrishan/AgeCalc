@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+           <p class="text_1">Todays Date in DDMMYYYY Format: <span id="today"></span></p>
+        </div>
+        <hr>
+        <div id="input" type="text">
+            <p class="text_1">Enter your Date of Birth in DDMMYYYY format:</p>
+            <input type="number" id="age">
+            <p class="error" id="error"></p>
+        </div>
+        <div id="output">
+            <p class="text_2">Days: <span id="days"></span></p>
+            <p class="text_2">Months: <span id="months"></span></p>
+            <p class="text_2">Years: <span id="years"></span></p>
+        </div>
+        <div id="btns">
+            <button id="cal" class="btn" onclick="calcage()">Calculate</button>
+            <button id="clear" class="btn" onclick="cleared()">Clear</button>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
