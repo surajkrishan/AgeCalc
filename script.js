@@ -80,7 +80,7 @@ function validdate(age) {
        msg = 'Invalid input: Please enter a valid date in ddmmyyyy format!';
     } 
 
-    if (age.toString().length < 8) {
+    if (age.toString().length < 8 || age.toString().length > 8) {
         msg = 'Invalid input: Please enter a valid date in ddmmyyyy format!';
     }
 
