@@ -72,9 +72,20 @@ function cleared() {
 function validdate(age) {
     
     let year = Number(age.substr(4, 4));
-    let month = Number(age.substr(2, 2))  - 1;
+    let month = Number(age.substr(2, 2));
     let day = Number(age.substr(0, 2));
     let msg = '';
+
+    console.log(month);
+    let t = new Date().toLocaleDateString('en-in', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).replace(/[^0-9]/g, "");
+
+    t_year = Number(t.substr(4, 4));
+    let leapYear = year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
+    
 
     if (isNaN(age)) {
        msg = 'Invalid input: Please enter a valid date in ddmmyyyy format!';
@@ -92,7 +103,6 @@ function validdate(age) {
         msg = 'Invalid input: Please enter a valid month!';
     }
 
-    let leapYear = year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
 
     if (month == 01 || month == 03 || month == 05 || month == 08 || month == 10 || month == 12) {
         if (day < 0 || day > 31) {
@@ -106,17 +116,17 @@ function validdate(age) {
         }
     } 
 
-    if (leapYear == 365) {
-        if (month == 02) {
-            if (day < 0 || day > 28) {
-                msg = 'Invalid Input: Please input a valid date (this was not a leap year)!';
-            }
+    if (month == 2) {
+        if (!leapYear) {
+                    if (day < 0 || day > 28) {
+                        msg = 'Invalid Input: Please input a valid date (this was not a leap year)!';
+                    }
+                } else {
+                    if (day < 0 || day > 29) {
+                        msg = 'Invalid Input: Please input a valid date (this was not a leap year)!';
+                    }
+                }
         }
-    } else {
-        if (day < 0 || day > 29) {
-            msg = 'Invalid Input: Please input a valid date!';
-        }
-    }
 
     document.querySelector("#error").innerHTML = msg;
     if (msg != '') {
