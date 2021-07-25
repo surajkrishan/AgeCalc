@@ -19,7 +19,7 @@ const GetData = () => {
     document.querySelector("#years").innerHTML = null;
 
     // Get input from the element
-    let date = document.querySelector("#age").value;
+    let date = document.querySelector("#date").value;
     let data = [];
 
     // Validate the input
@@ -85,11 +85,11 @@ const cleared = () => {
 }
 
 // Validation Function
-const validdate = age => {
+const validdate = date => {
     
-    let year = Number(age.substr(4, 4));
-    let month = Number(age.substr(2, 2));
-    let day = Number(age.substr(0, 2));
+    let year = Number(date.substr(4, 4));
+    let month = Number(date.substr(2, 2));
+    let day = Number(date.substr(0, 2));
     let msg = '';
 
     //get currrent year and month

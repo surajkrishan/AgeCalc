@@ -12,7 +12,7 @@
 
             <p class="text_1">Enter your Date of Birth in DDMMYYYY format:</p>
 
-            <input type="text" id="age"  maxlength="8" placeholder="DDMMYYYY" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
+            <input type="text" id="date"  maxlength="8" placeholder="DDMMYYYY" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
 
             <p class="error" id="error"></p>
 
@@ -25,7 +25,7 @@
             <button id="cal" class="btn" onclick="GetData()">Calculate</button>
 
             <button id="clear" class="btn" onclick="cleared()">Clear</button>
-            
+
     </div>
 </body>
 <script src="script.js"></script>
