@@ -23,7 +23,7 @@ const GetData = () => {
     let data = [];
 
     // Validate the input
-    if (validdate(date) == true) {
+    if (!validdate(date)) {
 
     // ṣplit the input values to repective parts
     let year = Number(date.substr(4, 4));
@@ -71,7 +71,7 @@ const calcDiff = date => {
   };
 
 
-
+// Reset function
 const cleared = () => {
     document.querySelector("#age").value = null;
     document.querySelector("#error").innerHTML = null;
@@ -88,13 +88,10 @@ const validdate = age => {
     let day = Number(age.substr(0, 2));
     let msg = '';
 
+    //get currrent year and month
     t_year = new Date().getFullYear();
     t_month = new Date().getMonth();
     
-    if (isNaN(age)) {
-       msg = 'Invalid input: Please enter a valid date in ddmmyyyy format!';
-    } 
-
     //validate
     if (age.toString().length < 8) {
         msg = 'Invalid input: Please enter a valid date in ddmmyyyy format!';
