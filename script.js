@@ -97,7 +97,7 @@ const validdate = date => {
     t_month = new Date().getMonth();
     
     //validate the length of the input
-    if (age.toString().length < 8) {
+    if (date.toString().length < 8) {
         msg = 'Invalid input: Please enter a valid date in ddmmyyyy format!';
     }
 
