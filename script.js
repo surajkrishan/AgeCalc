@@ -6,7 +6,7 @@ window.onload = function() {
         month: '2-digit',
         day: '2-digit'
     }).replace(/[^0-9]/g, "");
-    document.querySelector("#today").innerHTML = t;
+    document.querySelector("#today").innerHTML = t;  
 }
 
 // calculation
