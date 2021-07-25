@@ -1,6 +1,6 @@
 
 // Header date (current date)
-window.onload = function() {
+window.onload = () => {
     let t = new Date().toLocaleDateString('en-in', {
         year: 'numeric',
         month: '2-digit',
@@ -9,30 +9,42 @@ window.onload = function() {
     document.querySelector("#today").innerHTML = t;  
 }
 
-// calculation
-function calcage() {
-    
+// Reset function
+const GetData = () => {
+
     // Reset output
     document.querySelector("#error").innerHTML = null;
-    document.querySelector("#days").innerHTML = null;
+    document.querySelector("#days").innerHTML = null; 
     document.querySelector("#months").innerHTML = null;
     document.querySelector("#years").innerHTML = null;
 
     // Get input from the element
-    let age = document.querySelector("#age").value;
+    let date = document.querySelector("#age").value;
+    let data = [];
 
     // Validate the input
-    validdate(age);
-
-    // Get todays date
-    let today = new Date();
+    if (validdate(date) == true) {
 
     // ṣplit the input values to repective parts
-    let year = Number(age.substr(4, 4));
-    let month = Number(age.substr(2, 2))  - 1;
-    let day = Number(age.substr(0, 2));
-    let past = new Date(year,month,day);
+    let year = Number(date.substr(4, 4));
+    let month = Number(date.substr(2, 2));
+    let day = Number(date.substr(0, 2));
+    let past = new Date(`${year}-${month}-${day} 00:00:00 UTC`);
 
+    data =  calcDiff(past);
+
+    document.querySelector("#days").innerHTML = data.currDay;
+    document.querySelector("#months").innerHTML = data.currMonth;
+    document.querySelector("#years").innerHTML = data.currYear;
+    }
+}
+
+// Calculation function
+const calcDiff = date => {
+    
+    let today = new Date();
+    let past = new Date(date);
+    
     // Calculate years
     let currYear = today.getFullYear() - past.getFullYear();
 
@@ -46,91 +58,70 @@ function calcage() {
     // Calculate days
     let currDay = today.getDate()-past.getDate();
     if (currDay < 0) {
-        let m = past.getMonth();
+        let m = new Date(past.getFullYear(), past.getMonth(), 0).getDate()
         currDay = today.getDate() + m - past.getDate();
         currMonth = currMonth - 1;
     }
+    
+    return {
+      currYear,
+      currMonth,
+      currDay
+    };
+  };
 
-    // Set output values
-    document.querySelector("#days").innerHTML = currDay;
-    document.querySelector("#months").innerHTML = currMonth;
-    document.querySelector("#years").innerHTML = currYear;
 
-}
 
-// Reset function
-function cleared() {
+const cleared = () => {
     document.querySelector("#age").value = null;
     document.querySelector("#error").innerHTML = null;
-    document.querySelector("#days").innerHTML = null;
+    document.querySelector("#days").innerHTML = null; 
     document.querySelector("#months").innerHTML = null;
     document.querySelector("#years").innerHTML = null;
-    console.log("cleared");
 }
 
 // Validation Function
-function validdate(age) {
+const validdate = age => {
     
     let year = Number(age.substr(4, 4));
     let month = Number(age.substr(2, 2));
     let day = Number(age.substr(0, 2));
     let msg = '';
 
-    console.log(month);
-    let t = new Date().toLocaleDateString('en-in', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-    }).replace(/[^0-9]/g, "");
-
-    t_year = Number(t.substr(4, 4));
-    let leapYear = year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
+    t_year = new Date().getFullYear();
+    t_month = new Date().getMonth();
     
-
     if (isNaN(age)) {
        msg = 'Invalid input: Please enter a valid date in ddmmyyyy format!';
     } 
 
-    if (age.toString().length < 8 || age.toString().length > 8) {
+    //validate
+    if (age.toString().length < 8) {
         msg = 'Invalid input: Please enter a valid date in ddmmyyyy format!';
     }
 
+    // Validate year
     if (year < 0 || year > t_year) {
        msg = 'Invalid input: Please enter a valid year!';
+    } else {
+        if (month > t_month) {
+            msg = 'Invalid input: Please enter a valid month!';
+        }
     }
 
+    //validate month 
     if (month < 1 || month > 12) {
         msg = 'Invalid input: Please enter a valid month!';
     }
 
+    // Number of days
+    let NoD = new Date(year, month, 0).getDate();
 
-    if (month == 01 || month == 03 || month == 05 || month == 07 ||  month == 08 || month == 10 || month == 12) {
-        if (day < 0 || day > 31) {
-            msg = 'Invalid Input: Please input a valid date! (This month has 31 days)';
-        }
-    } 
-    
-    if (month == 04 || month == 06  || month == 09 || month == 11) {
-        if (day < 0 || day > 30) {
-            msg = 'Invalid Input: Please input a valid date! (This month has 30 days)';
-        }
-    } 
-
-    if (month == 2) {
-        if (!leapYear) {
-                    if (day < 0 || day > 28) {
-                        msg = 'Invalid Input: Please input a valid date (this was not a leap year)!';
-                    }
-                } else {
-                    if (day < 0 || day > 29) {
-                        msg = 'Invalid Input: Please input a valid date (this was not a leap year)!';
-                    }
-                }
-        }
-
-    document.querySelector("#error").innerHTML = msg;
-    if (msg != '') {
-        throw new Error("error");
+    if ( day < 0 ||  day > NoD) {
+        msg = `Invalid Input: Please input a valid date! (This month has only ${NoD} days)`;
     }
 
+    document.querySelector("#error").innerHTML = msg;
+
+    return msg;
 }
