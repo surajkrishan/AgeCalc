@@ -95,7 +95,7 @@ function validdate(age) {
         msg = 'Invalid input: Please enter a valid date in ddmmyyyy format!';
     }
 
-    if (year < 0) {
+    if (year < 0 || year > t_year) {
        msg = 'Invalid input: Please enter a valid year!';
     }
 
