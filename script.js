@@ -104,13 +104,13 @@ function validdate(age) {
     }
 
 
-    if (month == 01 || month == 03 || month == 05 || month == 08 || month == 10 || month == 12) {
+    if (month == 01 || month == 03 || month == 05 || month == 07 ||  month == 08 || month == 10 || month == 12) {
         if (day < 0 || day > 31) {
             msg = 'Invalid Input: Please input a valid date! (This month has 31 days)';
         }
     } 
     
-    if (month == 04 || month == 05 || month == 06 || month == 07 || month == 09 || month == 11) {
+    if (month == 04 || month == 06  || month == 09 || month == 11) {
         if (day < 0 || day > 30) {
             msg = 'Invalid Input: Please input a valid date! (This month has 30 days)';
         }
