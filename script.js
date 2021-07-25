@@ -23,7 +23,9 @@ const GetData = () => {
     let data = [];
 
     // Validate the input
-    if (!validdate(date)) {
+    let isValid  =  validdate(date);
+
+    if (!isValid) {
 
     // ṣplit the input values to repective parts
     let year = Number(date.substr(4, 4));
@@ -33,15 +35,20 @@ const GetData = () => {
 
     data =  calcDiff(past);
 
+    //Display calculated values 
     document.querySelector("#days").innerHTML = data.currDay;
     document.querySelector("#months").innerHTML = data.currMonth;
     document.querySelector("#years").innerHTML = data.currYear;
+    } else {
+        //Add the error message if any
+        document.querySelector("#error").innerHTML = isValid;
     }
 }
 
 // Calculation function
 const calcDiff = date => {
     
+    //Setting Dates
     let today = new Date();
     let past = new Date(date);
     
@@ -62,12 +69,9 @@ const calcDiff = date => {
         currDay = today.getDate() + m - past.getDate();
         currMonth = currMonth - 1;
     }
-    
-    return {
-      currYear,
-      currMonth,
-      currDay
-    };
+
+    //return the calculated values
+    return {currYear, currMonth, currDay};
   };
 
 
@@ -92,7 +96,7 @@ const validdate = age => {
     t_year = new Date().getFullYear();
     t_month = new Date().getMonth();
     
-    //validate
+    //validate the length of the input
     if (age.toString().length < 8) {
         msg = 'Invalid input: Please enter a valid date in ddmmyyyy format!';
     }
@@ -114,11 +118,11 @@ const validdate = age => {
     // Number of days
     let NoD = new Date(year, month, 0).getDate();
 
+    // Validate days
     if ( day < 0 ||  day > NoD) {
         msg = `Invalid Input: Please input a valid date! (This month has only ${NoD} days)`;
     }
 
-    document.querySelector("#error").innerHTML = msg;
-
+    //return value incase of error
     return msg;
 }
