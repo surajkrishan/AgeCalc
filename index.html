@@ -12,7 +12,7 @@
         <hr>
         <div id="input">
             <p class="text_1">Enter your Date of Birth in DDMMYYYY format:</p>
-            <input type="text" id="age"  maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
+            <input type="text" id="age"  maxlength="8" placeholder="DDMMYYYY" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
             <p class="error" id="error"></p>
         </div>
         <div id="output">
