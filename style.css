@@ -10,7 +10,17 @@ html {
     padding: 2%;
     border: 5px black solid;
     width: auto;
+    
 }
+/* hide scrollbar */
+body::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 
 /* Text styles */
 .text_1 {
