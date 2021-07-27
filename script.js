@@ -77,7 +77,7 @@ const calcDiff = date => {
 
 // Reset function
 const cleared = () => {
-    document.querySelector("#age").value = null;
+    document.querySelector("#date").value = null;
     document.querySelector("#error").innerHTML = null;
     document.querySelector("#days").innerHTML = null; 
     document.querySelector("#months").innerHTML = null;
