@@ -105,7 +105,7 @@ const validdate = date => {
     if (year < 0 || year > t_year) {
        msg = 'Invalid input: Please enter a valid year!';
     } else {
-        if (month > t_month) {
+        if (year == t_year && month > t_month) {
             msg = 'Invalid input: Please enter a valid month!';
         }
     }
